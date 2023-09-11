@@ -1,0 +1,1670 @@
+<style>
+  .aff-gutter {
+  }
+
+  .aff-gutter__title {
+    margin-bottom: 65px;
+    text-align: center;
+    font-size: 17px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .aff-gutter__title b {
+    margin-left: 5px;
+    font-size: 21px;
+    color: #13e8e5;
+    font-weight: 500;
+  }
+
+  .aff-gutter__inner {
+    box-sizing: border-box;
+    margin: 25px -15px;
+  }
+
+  .aff-gutter__inner:before,
+  .aff-gutter__inner:after {
+    content: '';
+    display: table;
+  }
+  .aff-gutter__inner:after {
+    clear: both;
+  }
+
+  .aff-gutter__cell {
+    box-sizing: border-box;
+    float: left;
+    width: 25%;
+    padding: 25px 15px;
+  }
+
+  /* aff-card */
+  .aff-card {
+    position: relative;
+  }
+
+  .aff-card:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    top: -80px;
+    /* background: linear-gradient(to bottom,rgba(147, 132, 58, 0.056) 0,rgba(243, 224, 127, 0.158) 100%); */
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  .aff-card:after {
+    content: '';
+    position: absolute;
+    height: 20px;
+    inset: auto 24px -8px;
+    background: var(--warning-background);
+    border-radius: 20px;
+  }
+
+  .aff-card__inner {
+    position: relative;
+    z-index: 2;
+    /* background-image: linear-gradient(0deg,#01182a 0,#063844 100%); */
+    backdrop-filter: blur(17.6px);
+    background: rgba(52, 52, 52, 0.57);
+    padding-bottom: 30px;
+    border-radius: 10px;
+    padding: 40px 40px;
+    text-align: center;
+    border: 2px solid transparent;
+  }
+
+  .aff-card__number {
+    /* font-size: .95rem; */
+    /* color: #13e8e5; */
+    font-weight: 700;
+    --size-icon: 69px;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    top: -40px;
+    /* background-image: linear-gradient(to bottom,var(--primary-color) 0,var(--background) 100%); */
+    font-size: 0.95rem;
+    text-align: center;
+    z-index: 3;
+    box-sizing: border-box;
+    width: var(--size-icon);
+    height: var(--size-icon);
+    border-radius: 500px;
+    vertical-align: middle;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .aff-card__number:after {
+    --size-icon-after: calc(var(--size-icon) - 2px);
+    /* background-image: linear-gradient(180deg,#01313e 0,#021d30 100%); */
+    position: absolute;
+    top: 2px;
+    content: '';
+    display: block;
+    width: var(--size-icon-after);
+    height: var(--size-icon-after);
+    margin-inline: auto;
+    border-radius: 50%;
+    transition: 0.1s ease-in-out;
+    transition-property: background;
+    z-index: -1;
+    background: #181818;
+  }
+
+  .aff-card__title {
+    font-size: 17px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .aff-card__turnover {
+    font-size: 21px;
+    color: #fce050;
+    font-weight: 500;
+  }
+
+  .aff-card__footer {
+    margin-top: 5px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+
+  .aff-card__cell {
+  }
+
+  .aff-card__cell b {
+    display: block;
+    font-size: 38px;
+    /* color: #9a9a9a; */
+    font-weight: 700;
+  }
+
+  .aff-card__cell span {
+    display: block;
+    font-size: 15px;
+    letter-spacing: 0px;
+    /* color: #ffffff; */
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .aff-card__cell--plus {
+    font-size: 26px;
+    color: #13e8e5;
+    font-weight: 700;
+  }
+
+  .aff-card.active .aff-card__inner {
+    border: 2px solid #efd44d;
+    box-shadow: 0 8px 32px 0 rgba(244, 208, 33, 0.45);
+  }
+
+  .aff-card.active .aff-card__number {
+    background-color: #181818;
+    /* background-image: -webkit-linear-gradient(-90deg,#fbef65 0,#fdcb6b 0,#fce050 0,#caa702 100%); */
+    box-shadow: 0 6px 13px 0 rgba(3, 15, 33, 0.23);
+    color: #181101;
+    font-weight: 600;
+  }
+
+  .aff-card.active .aff-card__number:after {
+    content: none;
+  }
+
+  @media (max-width: 1199px) {
+    .aff-gutter__cell {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .aff-gutter__cell {
+      width: 100%;
+    }
+  }
+
+  .aff-banner {
+    background: url('img/aff-banner-bg.html') no-repeat center center;
+    height: 245px;
+    border-radius: 10px;
+  }
+
+  .aff-banner__inner {
+    padding: 30px 20px 30px 54%;
+  }
+
+  .aff-banner__title {
+    font-size: 36px;
+    letter-spacing: 1px;
+    line-height: 42px;
+    color: #ffffff;
+    font-weight: 700;
+    -webkit-filter: drop-shadow(0px 2px 9px rgba(22, 15, 53, 0.17));
+    filter: drop-shadow(0px 2px 9px rgba(22, 15, 53, 0.17));
+    -webkit-background-clip: text;
+    color: transparent !important;
+    background-color: #fff;
+    background-image: var(--text-gradient);
+  }
+
+  .aff-banner__footer {
+    margin-top: 35px;
+  }
+
+  @media (max-width: 699px) {
+    .aff-banner {
+      text-align: center;
+      background: url('img/aff-banner-bg.html') no-repeat right center;
+    }
+    .aff-banner__inner {
+      padding: 15px 15px;
+    }
+    .aff-banner__title {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+</style>
+<!DOCTYPE html>
+<html lang="cn" itemscope itemtype="http://schema.org/WebPage">
+  <!-- Mirrored from alterion.site/affiliate by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Sep 2023 13:25:51 GMT -->
+  <!-- Added by HTTrack --><meta
+    http-equiv="content-type"
+    content="text/html;charset=UTF-8"
+  /><!-- /Added by HTTrack -->
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="csrf-token"
+      content="Vu8rjtI7RDDBqQnrwrBTT7aVcrePBrmPmqZdkBHm"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Affiliate - Alterion Ltd</title>
+
+    <meta name="title" content="ALTERION LTD - Affiliate" />
+
+    <meta
+      name="description"
+      content="Welcome to Alterion LTD - Your Trusted Partner in Fund Management and Smart Investments. Experience the power of Forex and crypto trading with our expert team. Earn stable daily interest payments through our managed investment solutions. Discover secure and diversified strategies for sustainable profits. Join us now for intelligent investing and exceptional customer support."
+    />
+    <meta
+      name="keywords"
+      content="fund management,Forex trading,crypto trading,managed investments,daily interest payments,asset management,stable profits,intelligent investing,trading strategies,market analysis,investment risks,cryptocurrencies,Bitcoin investment,Ethereum investment,24/7 customer support,safety and security,diversification strategy,foreign exchange trading,cryptocurrency investments,sustainable income"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/images/logoIcon/favicon.png"
+      type="image/x-icon"
+    />
+
+    <link rel="apple-touch-icon" href="assets/images/logoIcon/logo.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="ALTERION LTD - Affiliate"
+    />
+
+    <meta itemprop="name" content="ALTERION LTD - Affiliate" />
+    <meta
+      itemprop="description"
+      content="Welcome to Alterion LTD - Your Trusted Partner in Fund Management and Smart Investments. Experience the power of Forex and crypto trading with our expert team. Earn stable daily interest payments through our managed investment solutions. Discover secure and diversified strategies for sustainable profits. Join us now for intelligent investing and exceptional customer support."
+    />
+    <meta
+      itemprop="image"
+      content="https://alterion.site/assets/images/seo/64ca96c3be95b1690998467.png"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Unlock the Power of Smart Investments with Alterion LTD! Forex &amp;amp; Crypto Trading | Daily Interest Payments | Trusted Fund Management"
+    />
+    <meta
+      property="og:description"
+      content="Welcome to Alterion LTD - Your Gateway to Financial Success! Explore the world of profitable opportunities with our expert Forex and crypto trading services. Earn daily interest payments on your investments with our secure and diversified strategies. Trust in our experienced team for smart and reliable fund management. Join us now and embark on a journey towards financial prosperity!"
+    />
+    <meta
+      property="og:image"
+      content="https://alterion.site/assets/images/seo/64ca96c3be95b1690998467.png"
+    />
+    <meta property="og:image:type" content="png" />
+    <meta property="og:image:width" content="1180" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:url" content="https://alterion.site/affiliate" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link
+      rel="preload"
+      href="assets/frontend/fonts/Manrope/Manrope-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/frontend/fonts/Manrope/Manrope-SemiBold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/frontend/fonts/Manrope/Manrope-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="assets/frontend/js/uikit.min.js" as="script" />
+    <link rel="preload" href="assets/frontend/js/jquery.min.js" as="script" />
+    <link rel="preload" href="assets/frontend/js/js-cookie.js" as="script" />
+    <style>
+      @font-face {
+        font-family: 'Manrope';
+        src: url('assets/frontend/fonts/Manrope/Manrope-Light.woff2')
+            format('woff2'),
+          url('assets/frontend/fonts/Manrope/Manrope-Light.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Manrope';
+        src: url('assets/frontend/fonts/Manrope/Manrope-Regular.woff2')
+            format('woff2'),
+          url('assets/frontend/fonts/Manrope/Manrope-Regular.woff')
+            format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Manrope';
+        src: url('assets/frontend/fonts/Manrope/Manrope-Medium.woff2')
+            format('woff2'),
+          url('assets/frontend/fonts/Manrope/Manrope-Medium.woff')
+            format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Manrope';
+        src: url('assets/frontend/fonts/Manrope/Manrope-SemiBold.woff2')
+            format('woff2'),
+          url('assets/frontend/fonts/Manrope/Manrope-SemiBold.woff')
+            format('woff');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Manrope';
+        src: url('assets/frontend/fonts/Manrope/Manrope-Bold.woff2')
+            format('woff2'),
+          url('assets/frontend/fonts/Manrope/Manrope-Bold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+
+    <link rel="stylesheet" href="assets/frontend/css/uikit.andona.min.css" />
+    <link rel="stylesheet" href="assets/frontend/css/page.css" />
+
+    <script src="assets/frontend/js/uikit.min.js"></script>
+    <script src="assets/frontend/js/jquery.min.js"></script>
+    <script src="assets/frontend/js/js-cookie.js"></script>
+
+    <style>
+      /* .circle-pulse .loader {
+            width: 100px;
+            height: 100px;
+        }
+
+        .circle-pulse .loader>div {
+            margin: 23px 0 0 23px;
+            width: 50%;
+            height: 50%;
+            border: 2px solid #f7c22f;
+            border-radius: 50%;
+            animation: circlePulse 1s ease infinite;
+        }
+
+        @keyframes circlePulse {
+            0% {
+                transform: scale(0.1);
+            }
+
+            80% {
+                opacity: .8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .loader-container .loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .loader-container {
+            position: relative;
+            float: left;
+            width: 250px;
+            height: 250px;
+        }
+
+        .preloader-container {
+            position: fixed;
+            z-index: 10000;
+            width: 100%;
+            height: 100vh;
+            background: #151515bd;
+            top: 0;
+            opacity: 1;
+        }
+
+        .preloader-inner {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            left: 50%;
+            top: 50%;
+            margin-left: -125px;
+            margin-top: -125px;
+        }
+
+        .preloader-container.ready {
+            opacity: 0;
+            top: -100%;
+            top: -100vh;
+            transition: opacity 0.35s 0.4s linear, top 0s 0.7s;
+        }
+
+        .preloader-container.ready .preloader-inner {
+            opacity: 0;
+            transition: opacity 1.8s linear;
+        } */
+
+      .cookies-card {
+        width: 520px;
+        padding: 30px;
+        color: #dddddd;
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        z-index: 999999;
+        transition: all 0.5s;
+        background: rgba(25, 25, 25, 0.4);
+        box-shadow: 0 8px 32px 0 rgba(222, 202, 105, 0.37);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .cookies-card.hide {
+        bottom: -500px !important;
+      }
+      .radius--10px {
+        border-radius: 10px;
+      }
+
+      .cookies-card__icon {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background-color: #6e6f70;
+        color: #fff;
+        font-size: 32px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cookies-card__content {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 767px) {
+        .cookies-card {
+          width: 100%;
+          left: 0;
+          bottom: 0;
+          font-size: 14px;
+          padding: 15px;
+        }
+      }
+
+      nav .pagination {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 20px;
+      }
+      nav .pagination > * {
+        flex: none;
+        padding-left: 0;
+        position: relative;
+      }
+
+      nav .pagination > * > * {
+        display: block;
+        padding: 5px 10px;
+        color: #999;
+        transition: color 0.1s ease-in-out;
+      }
+
+      nav .pagination .active > * {
+        color: #f7c22f;
+      }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-7Z5HFT0YKK"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-7Z5HFT0YKK');
+    </script>
+  </head>
+
+  <body class="as-page-partners as-page-bg">
+    <nav id="asNavbar">
+      <div class="uk-container">
+        <div class="uk-navbar uk-flex-middle" uk-navbar="offset: 20">
+          <div class="uk-navbar-left">
+            <a href="index.html" class="uk-navbar-item uk-logo">
+              <img
+                src="assets/frontend/img/logo.svg"
+                width="259"
+                height="73"
+                alt="Alterion"
+              />
+            </a>
+          </div>
+
+          <div class="uk-navbar-right uk-flex-column">
+            <div id="asNavbar-top" class="uk-visible@l">
+              <ul class="uk-subnav uk-subnav-icons">
+                <li>
+                  <a href="https://twitter.com/ALTERIONLTD" target="_blank">
+                    <span class="uk-subnav-icon">
+                      <svg
+                        width="30px"
+                        height="30px"
+                        viewBox="0 -2 20 20"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        fill="#000000"
+                      >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g
+                          id="SVGRepo_tracerCarrier"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                          <title>twitter</title>
+                          <defs></defs>
+                          <g
+                            id="Page-1"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                          >
+                            <g
+                              id="Dribbble-Light-Preview"
+                              transform="translate(-60.000000, -7521.000000)"
+                              fill="#666666"
+                            >
+                              <g
+                                id="icons"
+                                transform="translate(56.000000, 160.000000)"
+                              >
+                                <path
+                                  d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                                  id="twitter-[#154]"
+                                ></path>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </svg>
+                    </span>
+                    x.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://t.me/ALTERIONCHANNEL" target="_blank">
+                    <span class="uk-subnav-icon"
+                      ><svg
+                        fill="#666666"
+                        width="30px"
+                        height="30px"
+                        viewBox="-0.72 -0.72 25.44 25.44"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke="#666666"
+                        stroke-width="0.40800000000000003"
+                      >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g
+                          id="SVGRepo_tracerCarrier"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                          <path
+                            d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"
+                          ></path>
+                        </g></svg
+                    ></span>
+                    News
+                  </a>
+                </li>
+                <li>
+                  <a href="https://t.me/AlterionLtd" target="_blank">
+                    <span class="uk-subnav-icon"
+                      ><svg
+                        fill="#666666"
+                        width="30px"
+                        height="30px"
+                        viewBox="-0.72 -0.72 25.44 25.44"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke="#666666"
+                        stroke-width="0.40800000000000003"
+                      >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g
+                          id="SVGRepo_tracerCarrier"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                          <path
+                            d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"
+                          ></path>
+                        </g></svg
+                    ></span>
+                    Support
+                  </a>
+                </li>
+              </ul>
+
+              <ul id="asNavbar-buttons" class="uk-subnav">
+                <li>
+                  <a href="#" class="uk-button uk-button-default">
+                    Cn
+
+                    <span uk-navbar-parent-icon></span>
+                  </a>
+                  <div class="uk-navbar-dropdown uk-width-small">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/en.webp"
+                            style="margin-right: 7px"
+                          />
+                          English
+                        </a>
+                      </li>
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/ru.webp"
+                            style="margin-right: 7px"
+                          />
+                          русский язык
+                        </a>
+                      </li>
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/cn.webp"
+                            style="margin-right: 7px"
+                          />
+                          中国人
+                        </a>
+                      </li>
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/in.webp"
+                            style="margin-right: 7px"
+                          />
+                          भारत
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="user/login.html" class="uk-button uk-button-default">
+                    Login <span class="as-sprite-home-log_in"></span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="user/register.html"
+                    class="uk-button uk-button-warning"
+                  >
+                    <span class="as-sprite-home-registration"></span>
+                    Registration
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <ul
+              id="asNavbar-nav"
+              class="uk-navbar-nav uk-width-expand uk-flex-between uk-visible@l"
+            >
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="about.html">About</a>
+              </li>
+              <li>
+                <a href="bounty.html">Bounty</a>
+              </li>
+              <li class="uk-active">
+                <a href="affiliate.html">Affiliate</a>
+              </li>
+              <li>
+                <a href="faqs.html">FAQs</a>
+              </li>
+              <li>
+                <a href="contact.html">Contacts</a>
+              </li>
+            </ul>
+
+            <button
+              id="asMenu-btn"
+              class="uk-navbar-toggle uk-preserve uk-icon uk-navbar-toggle-icon uk-hidden@l"
+              uk-navbar-toggle-icon="ratio:1.2"
+              uk-toggle="target: #asOffcanvas"
+              type="button"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <aside id="asOffcanvas" uk-offcanvas="flip: true; overlay: true">
+      <div class="uk-offcanvas-bar">
+        <div class="uk-offcanvas-header uk-margin">
+          <button class="uk-offcanvas-close" type="button" uk-close></button>
+          <button class="uk-button uk-button-default" type="button">
+            <span uk-nav-parent-icon></span>
+          </button>
+          <div uk-dropdown>
+            <ul class="uk-nav uk-dropdown-nav">
+              <li>
+                <a href="affiliate.html">
+                  <img
+                    src="assets/frontend/img/icon/en.webp"
+                    style="margin-right: 7px"
+                  />
+                  English
+                </a>
+              </li>
+              <li>
+                <a href="affiliate.html">
+                  <img
+                    src="assets/frontend/img/icon/ru.webp"
+                    style="margin-right: 7px"
+                  />
+                  русский язык
+                </a>
+              </li>
+              <li>
+                <a href="affiliate.html">
+                  <img
+                    src="assets/frontend/img/icon/cn.webp"
+                    style="margin-right: 7px"
+                  />
+                  中国人
+                </a>
+              </li>
+              <li>
+                <a href="affiliate.html">
+                  <img
+                    src="assets/frontend/img/icon/in.webp"
+                    style="margin-right: 7px"
+                  />
+                  भारत
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr />
+        <ul class="uk-nav uk-nav-default uk-nav-offcanvas uk-margin" uk-nav>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="about.html">About</a>
+          </li>
+          <li>
+            <a href="bounty.html">Bounty</a>
+          </li>
+          <li class="uk-active">
+            <a href="affiliate.html">Affiliate</a>
+          </li>
+          <li>
+            <a href="faqs.html">FAQs</a>
+          </li>
+          <li>
+            <a href="contact.html">Contacts</a>
+          </li>
+        </ul>
+        <hr />
+
+        <div class="uk-offcanvas-buttons uk-margin">
+          <a href="user/login.html" class="uk-button uk-button-default">
+            Login <span class="as-sprite-home-log_in"></span>
+          </a>
+          <a href="user/register.html" class="uk-button uk-button-warning">
+            <span class="as-sprite-home-registration"></span>
+            Signup
+          </a>
+        </div>
+
+        <ul class="uk-subnav uk-flex-center uk-subnav-icons-column uk-light">
+          <li>
+            <a href="https://twitter.com/ALTERIONLTD" target="_blank">
+              <span class="uk-subnav-icon"
+                ><span class="uk-subnav-icon"
+                  ><svg
+                    width="30px"
+                    height="30px"
+                    viewBox="0 -2 20 20"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="#000000"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <title>twitter</title>
+                      <defs></defs>
+                      <g
+                        id="Page-1"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                      >
+                        <g
+                          id="Dribbble-Light-Preview"
+                          transform="translate(-60.000000, -7521.000000)"
+                          fill="#666666"
+                        >
+                          <g
+                            id="icons"
+                            transform="translate(56.000000, 160.000000)"
+                          >
+                            <path
+                              d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                              id="twitter-[#154]"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g></svg></span
+              ></span>
+              X.com
+            </a>
+          </li>
+          <li>
+            <a href="https://t.me/ALTERIONCHANNEL" target="_blank">
+              <span class="uk-subnav-icon"
+                ><span class="uk-subnav-icon"
+                  ><span class="uk-subnav-icon"
+                    ><svg
+                      fill="#666666"
+                      width="30px"
+                      height="30px"
+                      viewBox="-0.72 -0.72 25.44 25.44"
+                      xmlns="http://www.w3.org/2000/svg"
+                      stroke="#666666"
+                      stroke-width="0.40800000000000003"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"
+                        ></path>
+                      </g></svg></span></span
+              ></span>
+              News
+            </a>
+          </li>
+          <li>
+            <a href="https://t.me/AlterionLtd" target="_blank">
+              <span class="uk-subnav-icon"
+                ><span class="uk-subnav-icon"
+                  ><span class="uk-subnav-icon"
+                    ><svg
+                      fill="#666666"
+                      width="30px"
+                      height="30px"
+                      viewBox="-0.72 -0.72 25.44 25.44"
+                      xmlns="http://www.w3.org/2000/svg"
+                      stroke="#666666"
+                      stroke-width="0.40800000000000003"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"
+                        ></path>
+                      </g></svg></span></span
+              ></span>
+              Support
+            </a>
+          </li>
+        </ul>
+
+        <hr />
+
+        <div class="uk-margin-medium">
+          <a href="index.html">
+            <img
+              src="assets/frontend/img/logo.svg"
+              width="200"
+              height="56"
+              loading="lazy"
+              alt="Alterion"
+            />
+          </a>
+        </div>
+      </div>
+    </aside>
+    <!-- header-section start  -->
+
+    <main>
+      <div class="uk-container">
+        <header id="asHeader" class="uk-section uk-section-small uk-container">
+          <h1 class="uk-h1 uk-heading-divider">Affiliate</h1>
+        </header>
+        <section
+          id="as-section-referral-commission"
+          class="uk-section uk-section-small"
+        >
+          <div class="uk-container uk-position-relative">
+            <div class="uk-flex-between@l" uk-grid>
+              <div id="as-sec-ref-com-desc" class="uk-width-1-3@l">
+                <p>
+                  With the help of the affiliate program, you can earn extra
+                  passive income by promoting the project with your referral
+                  link.<br />
+                  By default, the referrer will have 3 commission levels of
+                  3%-1%-1%. Don't need to invest to get affiliate commissions
+                </p>
+              </div>
+
+              <figure
+                id="as-sec-ref-com-2"
+                class="as-ref-caption uk-width-1-3@l uk-text-right"
+              >
+                <figcaption class="uk-grid uk-grid-medium">
+                  <div class="as-ref-caption_panel uk-width-expand">
+                    <strong>
+                      <span class="uk-text-primary uk-text-large">
+                        10 Levels
+                      </span>
+                      <span class="uk-text-emphasis"> Share Profit </span>
+                    </strong>
+                    <p class="uk-margin-small-top">
+                      Get daily share commission with 10 levels 10%-5%-2%-2%....
+                    </p>
+                  </div>
+
+                  <div class="as-ref-caption_icon uk-width-auto">
+                    <img
+                      src="assets/frontend/img/icon/w/ok-r.webp"
+                      width="83"
+                      height="61"
+                      loading="lazy"
+                      alt=""
+                    />
+                  </div>
+                </figcaption>
+
+                <img
+                  class="uk-margin-medium-top"
+                  src="assets/frontend/img/icon/w/arrow-long-r.webp"
+                  width="488"
+                  height="26"
+                  loading="lazy"
+                  alt="arrow"
+                />
+              </figure>
+
+              <div id="as-sec-ref-com-3" class="uk-width-1-1">
+                <figure class="uk-width-1-3@l">
+                  <img
+                    class="uk-margin-medium-bottom uk-visible@l"
+                    src="assets/frontend/img/icon/w/arrow-long-l.webp"
+                    width="488"
+                    height="26"
+                    loading="lazy"
+                    alt="arrow"
+                  />
+
+                  <figcaption class="uk-grid uk-grid-medium">
+                    <div class="as-ref-caption_icon uk-width-auto">
+                      <img
+                        src="assets/frontend/img/icon/w/ok-l.webp"
+                        width="83"
+                        height="61"
+                        loading="lazy"
+                        alt=""
+                      />
+                    </div>
+
+                    <div class="as-ref-caption_panel uk-width-expand">
+                      <strong>
+                        <span class="uk-text-primary"> Up to </span>
+                        <span class="uk-text-emphasis"> 4 Levels </span>
+                      </strong>
+                      <p class="uk-margin-small-top">
+                        When reaching a total turnover hold on over $3,000,
+                        starting investors will receive 4 levels of referral
+                        commission 4%-2%-1%-1%
+                      </p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <figure id="as-sec-ref-com-figures" class="uk-width-1-1">
+                <img
+                  id="as-sec-ref-com-figure"
+                  class="uk-visible@s"
+                  src="assets/frontend/img/figure/referral.webp"
+                  width="378"
+                  height="579"
+                  loading="lazy"
+                  alt=""
+                />
+
+                <div
+                  class="as-ball-panel as-ball-1 uk-background-contain"
+                  data-src="assets/frontend/img/icon/w/ball.webp"
+                  uk-img
+                >
+                  <div id="as-help-referral" class="uk-inline">
+                    <span class="as-sprite-home-info"></span>
+                    <div
+                      class="uk-card uk-card-body uk-card-default"
+                      uk-drop="pos: top-center;offset: 15"
+                    >
+                      You will receive 3% from referrals deposit instantly
+                    </div>
+                  </div>
+                  <ins>3%</ins>
+                  <mark> level 1 </mark>
+                </div>
+                <div
+                  class="as-ball-panel as-ball-2 uk-background-contain"
+                  data-src="assets/frontend/img/icon/w/ball.webp"
+                  uk-img
+                >
+                  <ins>1%</ins>
+                  <mark> level 2 </mark>
+                </div>
+                <div
+                  class="as-ball-panel as-ball-3 uk-background-contain"
+                  data-src="assets/frontend/img/icon/w/ball.webp"
+                  uk-img
+                >
+                  <ins>1%</ins>
+                  <mark> level 3 </mark>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </section>
+        <fieldset
+          class="uk-fieldset uk-form-stacked uk-section uk-margin-large-top"
+        >
+          <div class="uk-heading-line uk-heading-small uk-text-center">
+            <span> Reward Program </span>
+          </div>
+          <div class="aff-gutter">
+            <div class="aff-gutter__inner uk-text-center">
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/1.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Rookie</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $1,500</div>
+                    <div>Total Turnover ~ $5,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$100</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/2.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Junior</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $2,000</div>
+                    <div>Total Turnover ~ $8,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$150</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/3.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Intermediate</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $3,000</div>
+                    <div>Total Turnover ~ $15,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$250</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/4.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Senior</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $5,000</div>
+                    <div>Total Turnover ~ $25,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$400</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/5.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Expert</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $8,000</div>
+                    <div>Total Turnover ~ $40,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$600</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/6.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Master</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $12,000</div>
+                    <div>Total Turnover ~ $60,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$800</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/7.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Elite</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $15,000</div>
+                    <div>Total Turnover ~ $90,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$1,200</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/8.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Premier</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $18,000</div>
+                    <div>Total Turnover ~ $120,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$1,500</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/9.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Executive</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $20,000</div>
+                    <div>Total Turnover ~ $180,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$2,000</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aff-gutter__cell">
+                <div class="aff-card">
+                  <div class="aff-card__inner">
+                    <div class="aff-card__number">
+                      <img src="assets/frontend/img/icon/10.png" alt="image" />
+                    </div>
+                    <div class="uk-text-bold uk-text-large">Diamond</div>
+                    <div class="uk-text-bold">Level 1 Turnover ~ $25,000</div>
+                    <div>Total Turnover ~ $300,000</div>
+                    <div class="aff-card__footer">
+                      <div class="aff-card__cell">
+                        <b>$3,000</b>
+                        <span> Reward </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <aside
+          id="as-section-get-started"
+          class="uk-container uk-margin uk-background-cover"
+          sources="srcset: https://alterion.site/assets/frontend/img/bg/start-card-bg.webp; media: (max-width: 1199px)"
+          uk-img
+          uk-scrollspy="cls:uk-animation-fade"
+        >
+          <div
+            id="as-sec-get-started-wrap"
+            class="uk-background-cover uk-background-image@l"
+            data-src="https://alterion.site/assets/frontend/img/bg/sec-started.webp"
+            uk-img
+          >
+            <div id="as-sec-get-started-block">
+              <div id="as-sec-get-started-title">
+                Get started with Alterion Ltd
+              </div>
+
+              <div class="uk-margin">
+                Join the most powerful investment tool now and earn above!
+              </div>
+
+              <div class="uk-margin-top">
+                <a
+                  href="user/register.html"
+                  class="uk-button uk-button-warning uk-button-large uk-button-arrow-right"
+                >
+                  Create account
+                </a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer id="asFooter">
+      <aside id="asFooter-top" class="uk-container">
+        <div
+          class="uk-child-width-auto@l uk-flex-between@l uk-flex-middle"
+          uk-grid
+        >
+          <figure class="uk-width-auto@l uk-text-center"></figure>
+
+          <div class="uk-panel">
+            <ul class="uk-subnav uk-subnav-icons uk-subnav-icons-column">
+              <li>
+                <a
+                  href="https://www.trustpilot.com/review/alterion.site"
+                  target="_blank"
+                >
+                  <img
+                    src="assets/frontend/img/trustpilot-white.svg"
+                    width="145"
+                    height="317"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <div id="asFooter-bottom">
+        <div
+          id="asFooterLogoBg"
+          class="uk-visible@l"
+          data-src="https://alterion.site/assets/frontend/img/bg/logo-footer.webp"
+          uk-img
+        ></div>
+
+        <div class="uk-container">
+          <div
+            id="asFooter-subnav"
+            class="uk-width-expand uk-margin-bottom uk-visible@l"
+          >
+            <ul class="uk-subnav uk-subnav-default uk-flex-between">
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="about.html">About</a>
+              </li>
+              <li>
+                <a href="bounty.html">Bounty</a>
+              </li>
+              <li class="uk-active">
+                <a href="affiliate.html">Affiliate</a>
+              </li>
+              <li>
+                <a href="faqs.html">FAQs</a>
+              </li>
+              <li>
+                <a href="contact.html">Contacts</a>
+              </li>
+            </ul>
+          </div>
+
+          <div id="asFooter-bottom-info">
+            <div class="uk-width-auto uk-visible@l">
+              <img
+                id="asFooter-logo"
+                src="assets/frontend/img/logo.svg"
+                width="259"
+                height="73"
+                loading="lazy"
+                alt="Alterion"
+              />
+            </div>
+
+            <div id="asFooter-nav" class="uk-flex-last@l">
+              <ul
+                class="uk-subnav uk-flex-center uk-flex-left@l"
+                uk-margin="margin: uk-margin-top"
+              >
+                <li>
+                  <a href="#" class="uk-button uk-button-default">
+                    <span uk-navbar-parent-icon></span>
+                  </a>
+                  <div uk-dropdown="mode: click; offset: 20">
+                    <ul class="uk-nav uk-dropdown-nav">
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/en.webp"
+                            style="margin-right: 7px"
+                          />
+                          English
+                        </a>
+                      </li>
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/ru.webp"
+                            style="margin-right: 7px"
+                          />
+                          русский язык
+                        </a>
+                      </li>
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/cn.webp"
+                            style="margin-right: 7px"
+                          />
+                          中国人
+                        </a>
+                      </li>
+                      <li>
+                        <a href="affiliate.html">
+                          <img
+                            src="assets/frontend/img/icon/in.webp"
+                            style="margin-right: 7px"
+                          />
+                          भारत
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="user/login.html" class="uk-button uk-button-default">
+                    <span class="as-sprite-home-log_in"></span>
+                    Log in
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="user/register.html"
+                    class="uk-button uk-button-warning"
+                  >
+                    <span class="as-sprite-home-registration"></span>
+                    Registration
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div id="asFooter-copy">&copy; 2023 / All Rights Reserved</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <script src="assets/global/js/firebase/firebase-8.3.2.js"></script> -->
+
+    <!-- <script>
+    "use strict";   
+    
+    var permission = null;
+    var authenticated = '';
+    var pushNotify = 0;
+    var firebaseConfig = {"apiKey":"AIzaSyBnRMw5hTCZYBVtQERRhP9lPa0xsUnIxxo","authDomain":"alterion-a4bf1.firebaseapp.com","projectId":"alterion-a4bf1","storageBucket":"alterion-a4bf1.appspot.com","messagingSenderId":"127232527205","appId":"1:127232527205:web:112c5b8871d12531282f8c","measurementId":"G-LF7V394N9V","serverKey":"AAAAHZ-mS2U:APA91bHvLh3gNq_guhrFPVfMTH7J3lup1Idmfyfzvsm1Wnq7qhjW6PhfLl0710uONbN2UFDqaHmhaj1lMNIV1mB5R2DOtjzhzwhK93U5Va6VFWev2nN5tu961YpPoCb7_ou4PY6a5C1u"};
+
+    function pushNotifyAction(){ 
+        permission = Notification.permission;
+
+        if(!('Notification' in window)){
+            notify('info', 'Push notifications not available in your browser. Try Chromium.')
+        }
+        else if(permission === 'denied' || permission == 'default'){ //Notice for users dashboard
+            $('.notice').append(`
+                <div class="col-lg-12">
+                    <div class="custom--card mb-4">
+                        <div class="card-header justify-content-between d-flex flex-wrap notice_notify">
+                            <h5 class="alert-heading">Please Allow / Reset Browser Notification <i class='las la-bell text--danger'></i></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-0 small">If you want to get push notification then you have to allow notification from your browser</p>
+                        </div>
+                    </div> 
+                </div>
+            `);
+        }
+    }
+
+    if(pushNotify == 1){
+        pushNotifyAction();
+    }
+    //When users allow browser notification
+    if(permission != 'denied' && firebaseConfig){ 
+   
+        //Firebase 
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
+
+        navigator.serviceWorker.register("assets/global/js/firebase/firebase-messaging-sw.js")
+        
+        .then((registration) => {
+            messaging.useServiceWorker(registration);
+            
+            function initFirebaseMessagingRegistration() {
+                messaging
+                .requestPermission()
+                .then(function () {
+                    return messaging.getToken()
+                })
+                .then(function (token){   
+                    $.ajax({ 
+                        url: 'https://alterion.site/add/device/token',
+                        type: 'POST',
+                        data: {
+                            token: token,
+                            '_token': "Vu8rjtI7RDDBqQnrwrBTT7aVcrePBrmPmqZdkBHm"
+                        },
+                        success: function(response){
+                        },
+                        error: function (err) {
+                        },
+                    });
+                }).catch(function (error){
+                });
+            }
+
+            messaging.onMessage(function (payload){ 
+                const title = payload.notification.title;
+                const options = {
+                    body: payload.notification.body,
+                    icon: payload.notification.icon, 
+                    click_action:payload.notification.click_action,
+                    vibrate: [200, 100, 200]
+                };
+                new Notification(title, options);
+            });
+
+            //For authenticated users
+            if(authenticated){
+                initFirebaseMessagingRegistration();
+            }
+
+        });
+
+    }
+</script> -->
+
+    <script>
+      (function ($) {
+        'use strict';
+        // $(".langSel").on("change", function() {
+        //     window.location.href = "https://alterion.site/change/" + $(this).val();
+        // });
+
+        $('.policy').on('click', function () {
+          $.get('affiliate.html', function (response) {
+            $('.cookies-card').addClass('uk-invisible');
+          });
+        });
+
+        setTimeout(function () {
+          $('.cookies-card').removeClass('hide');
+        }, 2000);
+
+        var inputElements = $(
+          '[type=text],[type=password],[type=email],[type=number],select,textarea'
+        );
+        $.each(inputElements, function (index, element) {
+          element = $(element);
+          element
+            .closest('.form-group')
+            .find('label')
+            .attr('for', element.attr('name'));
+          element.attr('id', element.attr('name'));
+        });
+
+        $.each($('input, select, textarea'), function (i, element) {
+          var elementType = $(element);
+          if (elementType.attr('type') != 'checkbox') {
+            if (element.hasAttribute('required')) {
+              $(element)
+                .closest('.form-group')
+                .find('label')
+                .addClass('required');
+            }
+          }
+        });
+
+        Array.from(document.querySelectorAll('table')).forEach((table) => {
+          let heading = table.querySelectorAll('thead tr th');
+          Array.from(table.querySelectorAll('tbody tr')).forEach((row) => {
+            Array.from(row.querySelectorAll('td')).forEach((colum, i) => {
+              colum.setAttribute('data-label', heading[i].innerText);
+            });
+          });
+        });
+      })(jQuery);
+    </script>
+  </body>
+</html>
